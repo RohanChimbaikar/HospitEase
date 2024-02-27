@@ -31,6 +31,15 @@ def physio(request):
 def sono(request):
     return render(request,"templates/sono.html")
 
+def patho(request):
+    return render(request,"templates/patho.html")
+
+def mri(request):
+    return render(request,"templates/mri.html")
+
+def ct(request):
+    return render(request,"templates/ct.html")
+
 def log(request):
     
     return render(request,"templates/Loginint.html")

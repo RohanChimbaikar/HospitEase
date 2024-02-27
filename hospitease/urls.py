@@ -53,11 +53,11 @@ urlpatterns = [
     path('templates/vac.html',views.vac),
     path('templates/xray.html',views.xray),
     path('templates/physio.html',views.physio),
-    path('sono.html',views.sono),
-    path('templates/patho.html',views.vac),
-    path('templates/xray.html',views.vac),
-    path('templates/mri.html',views.vac),
-    path('templates/Ct.html',views.vac),
+    path('templates/sono.html',views.sono),
+    path('templates/patho.html',views.patho),
+    path('templates/xray.html',views.xray),
+    path('templates/mri.html',views.mri),
+    path('templates/ct.html',views.ct),
 
     path('templates/admindash.html',views.dash),
     ]
