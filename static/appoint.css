@@ -1,4 +1,4 @@
-/* body {
+body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -57,7 +57,7 @@ select {
 #button:hover {
     background-color: #0056b3;
 }
- */
+
 /* Resetting default margin and padding */
 * {
     margin: 0;

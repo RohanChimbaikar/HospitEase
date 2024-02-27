@@ -22,9 +22,9 @@ def logintxt(request):
         if t==():
             return render(request,'error.html')
         else:
-            return render(request,"patientdash.html")
+            return render(request,"facility.html")
 
-    return render(request,'Login.html')
+    return render(request,'/templates/Login.html')
 
 def loginst(request):
     appointments = Appointment.objects.all()
