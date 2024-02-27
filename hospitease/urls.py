@@ -60,4 +60,5 @@ urlpatterns = [
     path('templates/ct.html',views.ct),
 
     path('templates/admindash.html',views.dash),
+    path('templates/docdash.html',views.doc),
     ]

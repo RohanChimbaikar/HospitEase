@@ -53,3 +53,6 @@ def appoint(request):
 def dash(request):
     return render(request,"templates/admindash.html")
 
+def doc(request):
+    appointments = Appointment.objects.all()  # Query all appointments if it's not a POST request
+    return render(request, 'docdash.html', {"data": appointments})

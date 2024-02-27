@@ -55,43 +55,8 @@
             
             <input type="submit" value="Book Appointment" name="submit" id="button">
         </form>
-        <div id="confirmation" style="display: none;">
-            <p>Appointment booked!</p>
-        </div>
+        
     </div>
-    <script>
-        document.getElementById("appointmentForm").addEventListener("submit", function(event) {
-            // Prevent the default form submission
-            event.preventDefault();
-            
-            // Display the confirmation message
-            document.getElementById("confirmation").style.display = "block";
-    
-            // Get the form data
-            const formData = new FormData(this);
-    
-            // Make a POST request to submit the form data
-            fetch(this.getAttribute("action"), {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRFToken': document.querySelector('input[name="csrfmiddlewaretoken"]').value
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data); // Optionally, do something with the response from the server
-            })
-            .catch(error => {
-                console.error('There was a problem with your fetch operation:', error);
-            });
-        });
-    </script>
     
 </body>
 </html>

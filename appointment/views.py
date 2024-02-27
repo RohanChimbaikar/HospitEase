@@ -3,8 +3,6 @@ from .models import Appointment
 from django.shortcuts import HttpResponse
 
 def book_appointment(request):
-    appointments = Appointment.objects.all()
-    print(appointments)
     if request.method == 'POST':
         doctor = request.POST.get('doctor')
         date = request.POST.get('date')
@@ -13,12 +11,11 @@ def book_appointment(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         message = request.POST.get('message')
-        data = Appointment(doctor=doctor,date=date,time=time,name=name,email=email,phone=phone,message=message)
-        data.save()
-        return render(request, 'docdash.html',{"data":appointments})  # Redirect to a success page or any other appropriate URL
+        data = Appointment.objects.create(doctor=doctor, date=date, time=time, name=name, email=email, phone=phone, message=message)
+        appointments = Appointment.objects.all()  # Query all appointments again after creating the new one
+        return render(request, 'docdash.html', {"data": appointments})
     else:
-        return HttpResponse("Unsuccessfull")
+        appointments = Appointment.objects.all()  # Query all appointments if it's not a POST request
+        return render(request, 'docdash.html', {"data": appointments})
     
-    return render(request,'appointment.html')
-
-
+    return render(request, 'appointment.html')

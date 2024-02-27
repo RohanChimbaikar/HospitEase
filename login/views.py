@@ -22,7 +22,7 @@ def logintxt(request):
         if t==():
             return render(request,'error.html')
         else:
-            return render(request,"facility.html")
+            return render(request,"appointment.html")
 
     return render(request,'/templates/Login.html')
 
