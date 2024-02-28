@@ -22,8 +22,9 @@ from registration.views import signtxt
 from login.views import logintxt
 from login.views import loginst
 from feedback.views import feedtxt
-from appointment.views import book_appointment
+from appointment.views import *;
 from hospitease.views import dash
+
 
 # from appointment.views import bkapt
 
@@ -61,4 +62,5 @@ urlpatterns = [
 
     path('templates/admindash.html',views.dash),
     path('templates/docdash.html',views.doc),
+    path('send-acceptance-email/', send_acceptance_email, name='send_acceptance_email'),
     ]

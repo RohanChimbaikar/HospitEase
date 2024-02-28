@@ -33,6 +33,7 @@
         }
         .accept {
             background-color: #4CAF50; /* Green */
+			
         }
         .reject {
             background-color: #f44336; /* Red */
@@ -287,17 +288,25 @@
 						{% for appointment in data %}
 						<tr>
 							<td>
-								Doctor: {{ appointment.doctor }}<br>
+								{{ appointment.doctor }}
 							</td>
-							<td>	Date: {{ appointment.date }}<br></td>	
+							<td>	{{ appointment.date }}</td>	
 						
-							<td>	Time: {{ appointment.time }}<br></td>	
-								<td>Name: {{ appointment.name }}<br></td>	
-							<td>	Email: {{ appointment.email }}<br></td>	
-								<td>Phone: {{ appointment.phone }}<br></td>	
-								<td>Message: {{ appointment.message }}<br></td>	
+							<td>	{{ appointment.time }}</td>	
+								<td>{{ appointment.name }}</td>	
+							<td>	{{ appointment.email }}</td>	
+								<td>{{ appointment.phone }}</td>	
+								<td>{{ appointment.message }}</td>	
+								<td class="optionss">
+									<form method="post" action="/send-acceptance-email/">
+										{% csrf_token %}
+										<input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+										<button type="submit" class="accept">Accept</button>
+										<button type="submit" class="reject">Reject</button>
+									</form>
+								</td>
 								
-						
+								
 						</tr>
 						{% endfor %}
 					</tbody>
@@ -306,7 +315,7 @@
 		</div>
 	
 		</main>
-
+		
 
 
 	<script src="../static/script.js"></script>
