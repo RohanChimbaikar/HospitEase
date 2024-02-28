@@ -8,6 +8,7 @@
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- My CSS -->
 	<link rel="stylesheet" href="../static/dash.css">
+	<link rel="icon" href="/static/icon4.png" type="image/png">
 
 	<title>Doctor Dashboard</title>
 	<style>
@@ -170,8 +171,8 @@
 			</ul>
 
 
-			<div class="table-data">
-				<div class="order">
+			<!-- <div class="table-data">
+				<div class="order"> -->
 					<!-- <div class="head">
 						<h3>Appointment Requests</h3>
 						<i class='bx bx-search' ></i>
@@ -235,7 +236,7 @@
 						</tbody>
 					</table>
 				</div> -->
-				 <div class="todo">
+				 <!-- <div class="todo">
 					<div class="head">
 						<h3>Notes</h3>
 						<i class='bx bx-search' ></i>
@@ -261,33 +262,42 @@
 						<li class="not-completed">
 							<p>Note 5</p>
 							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-					</ul>
-				</div>
-			</div>
+						</li> -->
+					<!-- </ul>
+				</div> -->
+			<!-- </div> -->
 
 			<div class="todo">
 				<table>
 					<thead>
 						<tr>
-							<th>Appointment Details</th>
-							<th>Options</th>
+							<th>Doctor</th>
+							<th>Date</th>
+							<th>Time</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th>Message</th>
+							<th>Option</th>
+
+
 						</tr>
 					</thead>
 					<tbody>
 						{% for appointment in data %}
 						<tr>
 							<td>
-								
 								Doctor: {{ appointment.doctor }}<br>
-								Date: {{ appointment.date }}<br>
-								Time: {{ appointment.time }}<br>
-								Name: {{ appointment.name }}<br>
-								Email: {{ appointment.email }}<br>
-								Phone: {{ appointment.phone }}<br>
-								Message: {{ appointment.message }}<br>
-								
 							</td>
+							<td>	Date: {{ appointment.date }}<br></td>	
+						
+							<td>	Time: {{ appointment.time }}<br></td>	
+								<td>Name: {{ appointment.name }}<br></td>	
+							<td>	Email: {{ appointment.email }}<br></td>	
+								<td>Phone: {{ appointment.phone }}<br></td>	
+								<td>Message: {{ appointment.message }}<br></td>	
+								
+						
 						</tr>
 						{% endfor %}
 					</tbody>
