@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <link rel="stylesheet" href="/static/Login.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        /* Add any additional CSS styles here */
+        .error-message {
+            display: none;
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -21,7 +28,7 @@
                 <li><a href="../templates/home.html">Home</a></li>
                 <li><a href="../templates/about.html">About Us</a></li>
                 <li><a href="../templates/facility.html">Facilities</a></li>
-                <li><a href="../templates/feed.html">FeedBack</a></li>
+                <li><a href="../templates/feed.html">Feedback</a></li>
             </ul>
             <a href="../templates/home.html"><button class="login-btn">Back</button></a>
         </div>
@@ -32,16 +39,17 @@
         <span class="material-symbols-outlined">close</span>
         <div class="form-box">
             <div class="form-details">
-                <p>Please Login using your personal information </p>
+                <p>Please login using your personal information</p>
             </div>
             <div class="form-content">
                 <h2>LOGIN</h2>
-                <form action="{% url 'login' %}" method="POST">
+                <form id="loginForm" action="{% url 'login' %}" method="POST" onsubmit="return validateForm()">
                     {% csrf_token %} 
                     <div class="input-field">
-                        <input type="text" required name="un">
+                        <input type="text" required name="un" id="email">
                         <label>Email</label>
                     </div>
+                    <div class="error-message" id="emailError"></div>
                     <div class="input-field">
                         <input type="password" required name="pw">
                         <label>Password</label>
@@ -51,11 +59,26 @@
                 </form>
                 <div class="bottom-link">
                     Don't have an account?
-                    <a href="/templates/registration.html"> Sign Up </a>
+                    <a href="/templates/registration.html">Sign Up</a>
                 </div>
             </div>
         </div>
-        
     </div>
+
+    <script>
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            var pattern = /^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+(com|in|hospitease)$/;
+            var emailError = document.getElementById("emailError");
+            if (!pattern.test(email)) {
+                emailError.innerHTML = "Please enter a valid email address such as '@', '.com', '.in', or '.hospitease'.";
+                emailError.style.display = "block";
+                return false;
+            } else {
+                emailError.style.display = "none";
+                return true;
+            }
+        }
+    </script>
 </body>
 </html>

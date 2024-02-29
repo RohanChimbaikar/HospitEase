@@ -3,43 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/static/icon4.png" type="image/png">
-
     <title>Register Now</title>
     <link rel="stylesheet" href="../static/register.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<header>
-    <div class="navbar">
-        <a href="index.html" class="logo">
-            <img src="../static/Logo.png" alt="HospitEase">       
-        </a>
-        <ul class="links">
-            <li><a href="/templates/home.html">Home</a></li>
-            <li><a href="/templates/Login.html">Back</a></li>
-            <!-- <li><a href="facilities.html">Facilities</a></li>
-            <li><a href="#">Our Staff</a></li> -->
-        </ul>
-        <!-- <a href="index.html">
-        <button class="login-btn">HOME</button>
-    </a>
-    <a href="Login.html">
-        <button class="login-btn">Back</button>
-    </a> -->
-
-    </div>
-</header>
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="logo">
+                <img src="../static/Logo.png" alt="HospitEase">       
+            </a>
+            <ul class="links">
+                <li><a href="/templates/home.html">Home</a></li>
+                <li><a href="/templates/Login.html">Back</a></li>
+            </ul>
+        </div>
+    </header>
     <div class="container">
         <h2>Registration Form</h2>
         <div class="form">
-            <form action="{% url 'register' %}" method="POST">
+            <form id="registrationForm" action="{% url 'register' %}" method="POST" onsubmit="return validateForm()">
                 {% csrf_token %} 
                 <div class="input-name">
                     <i class="fa fa-user lock "></i>
@@ -49,20 +35,20 @@
                     </span>
                     <input type="text" placeholder="Last Name" class="name" name="lname">
                 </div>
-
                 <div class="input-name">
                     <i class="fa fa-envelope email"></i>
-                    <input type="email" placeholder="Email" class="text-name" name="un">
-                    <span>
+                    <input type="email" placeholder="Email" class="text-name" name="un" id="email">
+                    <span id="emailError" class="error-message"></span>
                 </div>
-
                 <div class="input-name">
                     <i class="fa fa-lock email"></i>
-                    <input type="password" placeholder="Password" class="text-name" name="pw">
+                    <input type="password" placeholder="Password" class="text-name" name="pw" id="password">
+                    <span id="passwordError" class="error-message"></span>
                 </div>
                 <div class="input-name">
                     <i class="fa fa-lock"></i>
-                    <input type="password" placeholder="Re-Enter Password" class="text-name">
+                    <input type="password" placeholder="Re-Enter Password" class="text-name" id="rePassword">
+                    <span id="rePasswordError" class="error-message"></span>
                 </div>
                 <div class="input-name">
                     <i class="fa fa-phone"></i>
@@ -76,16 +62,66 @@
                     <input type="radio" name="g1" value="Other" class="radiobtn">
                     <label style="margin-right: 15px;">Other</label>
                 </div>
-            
                 <div class="input-name">
-                    <input type="checkbox" class="checkbutton"> <label class="check">I accept the terms of service and privacy policy</label>
+                    <input type="checkbox" class="checkbutton" id="termsCheckbox"> <label class="check">I accept the terms of service and privacy policy</label>
                 </div>
                 <div class="input-name">
                     <input type="submit" class="Submit-button" value="Register">
                 </div>
-
+                <!-- Validation message container -->
+                <div id="errorMessage" class="error-message"></div>
             </form>
         </div>
     </div>
+    <script>
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var rePassword = document.getElementById("rePassword").value;
+            var termsCheckbox = document.getElementById("termsCheckbox").checked;
+
+            if (!validateEmail(email)) {
+                document.getElementById("emailError").innerHTML = "Please enter a valid email address.";
+                return false;
+            } else {
+                document.getElementById("emailError").innerHTML = "";
+            }
+
+            if (password.trim() === "") {
+                document.getElementById("passwordError").innerHTML = "Kindly enter password.";
+                return false;
+            } else {
+                document.getElementById("passwordError").innerHTML = "";
+            }
+
+            if (rePassword.trim() === "") {
+                document.getElementById("rePasswordError").innerHTML = "Kindly re-enter password.";
+                return false;
+            } else {
+                document.getElementById("rePasswordError").innerHTML = "";
+            }
+
+            if (password !== rePassword) {
+                document.getElementById("rePasswordError").innerHTML = "Passwords do not match.";
+                return false;
+            } else {
+                document.getElementById("rePasswordError").innerHTML = "";
+            }
+
+            if (!termsCheckbox) {
+                document.getElementById("errorMessage").innerHTML = "Kindly select all checkboxes.";
+                return false;
+            } else {
+                document.getElementById("errorMessage").innerHTML = "";
+            }
+
+            return true;
+        }
+
+        function validateEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+    </script>
 </body>
 </html>
