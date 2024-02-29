@@ -38,12 +38,59 @@
         .reject {
             background-color: #f44336; /* Red */
         }
+		.alert {
+			padding: 15px;
+			margin-bottom: 20px;
+			border: 1px solid transparent;
+			border-radius: 4px;
+		}
+
+		.alert-success {
+		color: #155724;
+		background-color: #d4edda;
+		border-color: #c3e6cb;
+		font-family: var(--lato);
+		animation: slideDown 0.5s ease forwards;
+		}
+		@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+		.alert-reject {
+    color: #dc3545; /* Text color */
+    background-color: #f8d7da; /* Background color (light red) */
+    border-color: #f5c6cb; /* Border color */
+    font-family: var(--lato); /* Font family */
+    padding: 1rem; /* Padding */
+    border-radius: 0.25rem; /* Border radius */
+    margin-bottom: 1rem; /* Margin bottom */
+	transition: 3s ease-in;
+	animation: slideDown 0.5s ease forwards;
+	
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+
+
+
+
     </style>
 
 </head>
 <body>
-
-
+	
 	<!-- SIDEBAR -->
 	<section id="sidebar">
 		<a href="#" class="brand">
@@ -82,7 +129,7 @@
 					<span class="text">Add new Patient</span>
 				</a>
 			</li> -->
-		</ul>
+		</ul>	
         <br><br><br><br><br><br><br><br><br><br>
 		<ul class="side-menu">
 			<li>
@@ -129,6 +176,18 @@
 		</nav>
 		<!-- NAVBAR -->
 
+			<!-- Alert section -->
+			{% if email_sent %}
+			<div class="alert alert-success" id="alert" role="alert">
+				Appointment acceptance email sent successfully!
+			</div>
+			{% endif %}
+			{% if reject_sent %}
+			<div class="alert alert-reject" id="alert" role="alert">
+				Appointment Rejected email sent successfully!
+			</div>
+			{% endif %}
+			<!-- Alert section -->
 		<!-- MAIN -->
 		<main>
 			<div class="head-title">
@@ -302,9 +361,14 @@
 										{% csrf_token %}
 										<input type="hidden" name="appointment_id" value="{{ appointment.id }}">
 										<button type="submit" class="accept">Accept</button>
+										</form>
+									<form method="post" action="/reject-appointment/">
+										{% csrf_token %}
+										<input type="hidden" name="appointment_id" value="{{ appointment.id }}">
 										<button type="submit" class="reject">Reject</button>
 									</form>
 								</td>
+								
 								
 								
 						</tr>
@@ -319,5 +383,17 @@
 
 
 	<script src="../static/script.js"></script>
+	<script>
+        // Get the alert element by its ID
+        var alertElement = document.getElementById('alert');
+
+        // Function to hide the alert after 10 seconds
+        function hideAlert() {
+            alertElement.style.display = 'none';
+        }
+
+        // Set a timeout to call the hideAlert function after 10 seconds
+        setTimeout(hideAlert, 5000);
+    </script>
 </body>
 </html>

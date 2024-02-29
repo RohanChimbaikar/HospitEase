@@ -15,7 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
 from login.views import logintxt
 from hospitease import views
 from registration.views import signtxt
@@ -24,7 +27,7 @@ from login.views import loginst
 from feedback.views import feedtxt
 from appointment.views import *;
 from hospitease.views import dash
-
+from patients import *
 
 # from appointment.views import bkapt
 
@@ -42,7 +45,7 @@ urlpatterns = [
     path('templates/feed.html',views.feed),
     path('register/', signtxt, name='register'),
     path('login/', logintxt, name='login'),
-    path('loginint/', loginst, name='loginst'),
+    path('loginint/', views.doc, name='loginst'),
     path("templates/Loginint.html",views.log),
     path('templates/Login_inst.html',views.logg),
    path('templates/appointment.html', views.appoint),
@@ -63,4 +66,12 @@ urlpatterns = [
     path('templates/admindash.html',views.dash),
     path('templates/docdash.html',views.doc),
     path('send-acceptance-email/', send_acceptance_email, name='send_acceptance_email'),
+    path('reject-appointment/', reject_email, name='reject-appointment/'),
+
+
+    # Profile Section
+    path('',include('patients.urls'))
     ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
