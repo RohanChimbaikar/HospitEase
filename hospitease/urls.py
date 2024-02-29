@@ -27,7 +27,7 @@ from login.views import loginst
 from feedback.views import feedtxt
 from appointment.views import *;
 from hospitease.views import dash
-from patients import *
+
 
 # from appointment.views import bkapt
 
@@ -67,11 +67,4 @@ urlpatterns = [
     path('templates/docdash.html',views.doc),
     path('send-acceptance-email/', send_acceptance_email, name='send_acceptance_email'),
     path('reject-appointment/', reject_email, name='reject-appointment/'),
-
-
-    # Profile Section
-    path('',include('patients.urls'))
-    ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+]
