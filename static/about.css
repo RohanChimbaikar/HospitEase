@@ -22,6 +22,30 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 8px;
   }
+  .card:hover{
+    box-shadow: 0 8px 12px 0 #a5e6f2;
+    transform: scale(1.03);
+    transition: 0.5s ease-in;
+    filter: drop-shadow(10px 10px 20px #a5e6f2);
+  }
+  .card:hover img {
+    animation: shake 1s ease-in-out;
+  }
+  
+  @keyframes shake {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-3px); }
+    50% { transform: translateY(3px); }
+    75% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+  }
+  .card:hover h2{
+    color: #4c69dc;
+  }
+  
+  
+  
+
   
   .about-section {
     padding: 50px;
