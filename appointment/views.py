@@ -53,6 +53,8 @@ def send_acceptance_email(request):
     
 
 
+
+
 def reject_email(request):
     if request.method == 'POST':
         appointment_id = request.POST.get('appointment_id')
@@ -60,27 +62,28 @@ def reject_email(request):
         # Get the appointment object
         appointment = Appointment.objects.get(id=appointment_id)        
         
-        # Send acceptance email
+        # Send rejection email
         send_mail(
-        'Appointment Rejection Notification',
-        'Dear {},\n\n' \
-        'We regret to inform you that your appointment scheduled for {} at {} with Dr. {} has been rejected.\n\n' \
-        'Unfortunately, due to unforeseen circumstances, we are unable to accommodate your appointment request at this time. We apologize for any inconvenience this may cause.\n\n' \
-        'Please feel free to reschedule your appointment at your earliest convenience by contacting our receptionist at:\n\n' \
-        'Receptionist\'s Name: Emily Johnson\n' \
-        'Receptionist\'s Email: emily.johnson@hospitease.com\n' \
-        'Receptionist\'s Phone: +91 9372172051 \n\n' \
-        'Thank you for your understanding.\n\n' \
-        'Best regards,\n' \
-        'HospitEase Team'.format(appointment.name, appointment.date, appointment.time, appointment.doctor),
-        'team@hospitease.com',
-        [appointment.email],
-        fail_silently=False,
-    )
+            'Appointment Rejection Notification',
+            'Dear {},\n\n' \
+            'We regret to inform you that your appointment scheduled for {} at {} with {} has been rejected.\n\n' \
+            'Unfortunately, due to unforeseen circumstances, we are unable to accommodate your appointment request at this time. We apologize for any inconvenience this may cause.\n\n' \
+            'Please feel free to reschedule your appointment at your earliest convenience by contacting our receptionist at:\n\n' \
+            'Receptionist\'s Name: Emily Johnson\n' \
+            'Receptionist\'s Email: emily.johnson@hospitease.com\n' \
+            'Receptionist\'s Phone: +91 9372172051 \n\n' \
+            'Thank you for your understanding.\n\n' \
+            'Best regards,\n' \
+            'HospitEase Team'.format(appointment.name, appointment.date, appointment.time, appointment.doctor),
+            'team@hospitease.com',
+            [appointment.email],
+            fail_silently=False,
+        )
 
-        reject_sent=True
-        return render(request, 'docdash.html', {'data': Appointment.objects.all(), 'reject_sent': reject_sent})
-        
-        # Redirect to a success page
-        return HttpResponseRedirect('/success/')
+    # Fetch all appointments
+    appointments = Appointment.objects.all()
+    
+    # Render the same page with updated appointment data and rejection flag
+    return render(request, 'docdash.html', {'data': appointments, 'reject_sent': True})
+
     
