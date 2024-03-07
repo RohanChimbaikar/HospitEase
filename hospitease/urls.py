@@ -28,6 +28,7 @@ from feedback.views import feedtxt
 from appointment.views import *;
 from hospitease.views import dash
 
+from adduser.views import register,logstaff
 
 # from appointment.views import bkapt
 
@@ -46,7 +47,7 @@ urlpatterns = [
     path('register/', signtxt, name='register'),
     path('login/', logintxt, name='login'),
     path('loginint/', views.doc, name='loginst'),
-    path("templates/Loginint.html",views.log),
+    path("templates/Loginint.html",views.log,name='red'),
     path('templates/Login_inst.html',views.logg),
    path('templates/appointment.html', views.appoint),
    path('appointment/',book_appointment,name='bookappointment'),
@@ -67,4 +68,14 @@ urlpatterns = [
     path('templates/docdash.html',views.doc),
     path('send-acceptance-email/', send_acceptance_email, name='send_acceptance_email'),
     path('reject-appointment/', reject_email, name='reject-appointment/'),
+
+
+
+   
+    path('templates/staffreg.html', views.staffreg),
+    path('registaff',register,name='registaff'),
+    path('stafflog',logstaff,name='stafflog'),
+
+
+
 ]

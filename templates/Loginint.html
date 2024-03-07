@@ -36,7 +36,7 @@
             </div>
             <div class="form-content">
                 <h2>LOGIN</h2>
-                <form action="{% url 'loginst' %}" method="POST">
+                <form action="{% url 'stafflog' %}" method="POST">
                     {% csrf_token %} 
                     <div class="input-field">
                         <input type="text" required name="un">
@@ -51,7 +51,7 @@
                 </form>
                 <div class="bottom-link">
                     Don't have an account?
-                    <a href="/templates/registration.html"> Sign Up </a>
+                    <a href="staffreg.html"> Sign Up </a>
                 </div>
             </div>
         </div>

@@ -56,3 +56,6 @@ def dash(request):
 def doc(request):
     appointments = Appointment.objects.all()  # Query all appointments if it's not a POST request
     return render(request, 'docdash.html', {"data": appointments})
+
+def staffreg(request):
+    return render(request,'templates/staffreg.html')

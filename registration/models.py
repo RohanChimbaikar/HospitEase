@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import RegexValidator
+from django.utils import timezone
 # Create your models here.
 
 class Registration(models.Model):
@@ -12,6 +13,8 @@ class Registration(models.Model):
     phone_number = models.CharField(
         validators=[phoneNumberRegex], max_length=16, unique=True)
     gender = models.CharField(max_length=10)
+    date_joined = models.DateTimeField(default=timezone.now)
+
     class Meta:
         db_table = 'registration_registration'
     
