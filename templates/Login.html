@@ -43,7 +43,7 @@
             </div>
             <div class="form-content">
                 <h2>LOGIN</h2>
-                <form id="loginForm" action="{% url 'login' %}" method="POST" onsubmit="return validateForm()">
+                <form id="loginForm" action="{% url 'loginapt' %}" method="POST" onsubmit="return validateForm()">
                     {% csrf_token %} 
                     <div class="input-field">
                         <input type="text" required name="un" id="email">

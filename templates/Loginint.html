@@ -9,6 +9,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<style>
+    /* Styles for the alert */
+    .alert {
+        padding: 15px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+    
+    /* Styles for the danger alert */
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+</style>
 </head>
 <body>
     <!-- Navbar -->
@@ -26,6 +43,7 @@
             <a href="../templates/home.html"><button class="login-btn">Back</button></a>
         </div>
     </header>
+    
 
     <!-- Form -->
     <div class="form">
@@ -51,11 +69,17 @@
                 </form>
                 <div class="bottom-link">
                     Don't have an account?
-                    <a href="staffreg.html"> Sign Up </a>
+                    <a href="/templates/staffreg.html"> Sign Up </a>
                 </div>
             </div>
         </div>
         
     </div>
+    {% if error %}
+    <!-- Display an alert with the error message -->
+    <div class="alert alert-danger" role="alert">
+       <b> Invalid username or password. Please try again.</b>
+    </div>
+{% endif %}
 </body>
 </html>

@@ -3,11 +3,14 @@ from .models import Appointment
 from django.shortcuts import HttpResponse
 from django.http import *
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def book_appointment(request):
     if request.method == 'POST':
         doctor = request.POST.get('doctor')
         date = request.POST.get('date')
-        time = request.POST.get('time')
+        time = request.POST.get('selectedTime')
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')

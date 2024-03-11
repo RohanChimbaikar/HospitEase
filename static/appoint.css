@@ -144,3 +144,27 @@ select {
     padding: 10px;
   }
   
+  .time-slots {
+    display: block;
+    flex-wrap: wrap;
+    margin-top: 10px; /* Adjust margin as needed */
+  }
+  
+  .time-slots button {
+    width: 32%; 
+    margin-bottom: 5px;
+    
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .time-slots button:hover {
+    background-color: #9bcafb;;
+  }
+  .selected {
+    background-color: #9bcafb; 
+  }

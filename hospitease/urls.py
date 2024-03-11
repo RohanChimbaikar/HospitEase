@@ -29,7 +29,9 @@ from appointment.views import *;
 from hospitease.views import dash
 
 from adduser.views import register,logstaff
-
+from django.contrib.auth.views import LoginView
+from inventory.views import add_product, delete_product,edit_product,use_product
+from room_mgmt.views import occupy_room,unoccupy_room,release_room,book_room,room_list
 # from appointment.views import bkapt
 
 urlpatterns = [
@@ -45,7 +47,7 @@ urlpatterns = [
     path('templates/registration.html',signtxt),
     path('templates/feed.html',views.feed),
     path('register/', signtxt, name='register'),
-    path('login/', logintxt, name='login'),
+    path('login/', logintxt, name='loginapt'),
     path('loginint/', views.doc, name='loginst'),
     path("templates/Loginint.html",views.log,name='red'),
     path('templates/Login_inst.html',views.logg),
@@ -77,5 +79,22 @@ urlpatterns = [
     path('stafflog',logstaff,name='stafflog'),
 
 
+     path('accounts/login/', LoginView.as_view(), name='login'),
+
+
+     path('templates/inventory.html',views.invent),
+     #Inventory
+     path('add_product/', add_product, name='add_product'),
+    path('edit_product/<int:pk>/', edit_product, name='edit_product'),
+    path('delete_product/<int:pk>/',delete_product, name='delete_product'),
+    path('use_product/<int:product_id>/', use_product, name='use_product'),
+    
+    #Rooms management
+    path('templates/room_list.html',views.room),
+    path('rooms/', room_list, name='room_list'),
+    path('book/<int:room_id>/', book_room, name='book_room'),
+    path('release/<int:room_id>/', release_room, name='release_room'),
+    path('occupy/<int:room_id>/', occupy_room, name='occupy_room'),
+    path('unoccupy/<int:room_id>/', unoccupy_room, name='unoccupy_room'),
 
 ]

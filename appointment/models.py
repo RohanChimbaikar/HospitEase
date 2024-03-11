@@ -6,6 +6,7 @@ class Appointment(models.Model):
         ('Dr. Smith', 'Dr. Smith - Cardiology'),
         ('Dr. Johnson', 'Dr. Johnson - Neurology'),
         ('Dr. Lee', 'Dr. Lee - Pediatrics'),
+        ('Dr .Leo','Dr. Leo - X-Ray'),
     ]
     doctor = models.CharField(max_length=100, choices=doctor_choices)
     date = models.DateField()
