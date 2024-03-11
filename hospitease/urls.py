@@ -67,12 +67,17 @@ urlpatterns = [
     path('templates/ct.html',views.ct),
 
     path('templates/admindash.html',views.dash),
-    path('templates/docdash.html',views.doc),
+    path('templates/docdash.html',views.doc,name='doc'),
     path('send-acceptance-email/', send_acceptance_email, name='send_acceptance_email'),
     path('reject-appointment/', reject_email, name='reject-appointment/'),
 
 
-
+    
+    path('book/<int:room_id>/', views.book_room, name='book_room'),
+    path('release/<int:room_id>/', views.release_room, name='release_room'),
+    
+     path('occupy/<int:room_id>/', views.occupy_room, name='occupy_room'),
+    path('unoccupy/<int:room_id>/', views.unoccupy_room, name='unoccupy_room'),
    
     path('templates/staffreg.html', views.staffreg),
     path('registaff',register,name='registaff'),
@@ -82,7 +87,7 @@ urlpatterns = [
      path('accounts/login/', LoginView.as_view(), name='login'),
 
 
-     path('templates/inventory.html',views.invent),
+     path('templates/inventory.html',views.invent,name='invent'),
      #Inventory
      path('add_product/', add_product, name='add_product'),
     path('edit_product/<int:pk>/', edit_product, name='edit_product'),
@@ -90,11 +95,10 @@ urlpatterns = [
     path('use_product/<int:product_id>/', use_product, name='use_product'),
     
     #Rooms management
-    path('templates/room_list.html',views.room),
-    path('rooms/', room_list, name='room_list'),
-    path('book/<int:room_id>/', book_room, name='book_room'),
-    path('release/<int:room_id>/', release_room, name='release_room'),
-    path('occupy/<int:room_id>/', occupy_room, name='occupy_room'),
-    path('unoccupy/<int:room_id>/', unoccupy_room, name='unoccupy_room'),
+    path('rooms/', views.doc, name='room_list'),
+    path('book/<int:room_id>/', views.book_room, name='book_room'),
+    path('release/<int:room_id>/', views.release_room, name='release_room'),
+    path('occupy/<int:room_id>/', views.occupy_room, name='occupy_room'),
+    path('unoccupy/<int:room_id>/', views.unoccupy_room, name='unoccupy_room'),
 
 ]
