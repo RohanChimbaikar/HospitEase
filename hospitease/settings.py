@@ -153,3 +153,6 @@ EMAIL_PORT=587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER='projectwork5209@gmail.com'
 EMAIL_HOST_PASSWORD='fdtb avmp yqlu zlrp'
+
+
+LOGIN_URL = '/templates/Loginint.html'

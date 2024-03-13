@@ -28,7 +28,7 @@ from feedback.views import feedtxt
 from appointment.views import *;
 from hospitease.views import dash
 
-from adduser.views import register,logstaff
+from adduser.views import register,logstaff,logout_view
 from django.contrib.auth.views import LoginView
 from inventory.views import add_product, delete_product,edit_product,use_product
 from room_mgmt.views import occupy_room,unoccupy_room,release_room,book_room,room_list
@@ -82,9 +82,11 @@ urlpatterns = [
     path('templates/staffreg.html', views.staffreg),
     path('registaff',register,name='registaff'),
     path('stafflog',logstaff,name='stafflog'),
+    path('logout/', logout_view, name='logout'),
 
 
      path('accounts/login/', LoginView.as_view(), name='login'),
+
 
 
      path('templates/inventory.html',views.invent,name='invent'),

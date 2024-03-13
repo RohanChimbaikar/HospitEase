@@ -11,20 +11,24 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <style>
-    /* Styles for the alert */
     .alert {
-        padding: 15px;
+        position: relative;
+        padding: .75rem 1.25rem;
+        margin-bottom: 1rem;
         border: 1px solid transparent;
-        border-radius: 4px;
-        margin-bottom: 20px;
+        border-radius: .25rem;
     }
     
-    /* Styles for the danger alert */
     .alert-danger {
         color: #721c24;
         background-color: #f8d7da;
         border-color: #f5c6cb;
     }
+    
+    .hidden {
+        display: none;
+    }
+    
 </style>
 </head>
 <body>
@@ -44,7 +48,7 @@
         </div>
     </header>
     
-
+    
     <!-- Form -->
     <div class="form">
         <span class="material-symbols-outlined">close</span>
@@ -71,15 +75,13 @@
                     Don't have an account?
                     <a href="/templates/staffreg.html"> Sign Up </a>
                 </div>
+                
             </div>
         </div>
         
     </div>
-    {% if error %}
-    <!-- Display an alert with the error message -->
-    <div class="alert alert-danger" role="alert">
-       <b> Invalid username or password. Please try again.</b>
-    </div>
-{% endif %}
+    {% if error_message %}
+    <div class="alert alert-danger">{{ error_message }}</div>
+    {% endif %}
 </body>
 </html>

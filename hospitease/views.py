@@ -2,9 +2,12 @@ from django.http import HttpResponse
 from django.shortcuts import render 
 from appointment.models import Appointment
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from inventory.models import Product
 from room_mgmt.models import Room
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
+
 def about(request):
     return render(request,"about.html")
 
@@ -52,7 +55,9 @@ def logg(request):
     return render(request,"templates/Login_inst.html")
 
 def appoint(request):
-    return render(request,"appointment.html")
+    staff_users = User.objects.filter(is_staff=True)
+    print(staff_users)
+    return render(request,"appointment.html",{'staff_users': staff_users})
 
 def dash(request):
     return render(request,"templates/admindash.html")
@@ -63,9 +68,12 @@ def invent(request):
     return render(request,"templates/docdash.html",{'products': products})
 
 
+@login_required
+@staff_member_required(login_url='/stafflog/')
 def doc(request):
     if request.user.is_authenticated:
-        appointments = Appointment.objects.all()  # Query all appointments if it's not a POST request
+        appointments = Appointment.objects.filter(doctor=request.user)
+        user_full_name = request.user.get_full_name()
         products = Product.objects.all()
         available_rooms = Room.objects.filter(available=True)
         unavailable_rooms = Room.objects.filter(available=False)
@@ -73,10 +81,12 @@ def doc(request):
             "data": appointments,
             'products': products,
             'available_rooms': available_rooms,
-            'unavailable_rooms': unavailable_rooms
+            'unavailable_rooms': unavailable_rooms,
+            'user_full_name': user_full_name,
         })
     else:
-        return render(request, "templates/Loginint.html")
+        return redirect("login")  # Redirect to the login page if the user is not authenticated
+
 
 def book_room(request, room_id):
     room = Room.objects.get(pk=room_id)

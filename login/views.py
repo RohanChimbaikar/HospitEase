@@ -1,6 +1,8 @@
 from django.shortcuts import render
 import mysql.connector as sql
 from appointment.models import Appointment
+from django.contrib.auth.models import User
+from django.contrib.auth.models import Group, User
 un=''
 pw=''
 # Create your views here.
@@ -22,7 +24,13 @@ def logintxt(request):
         if t==():
             return render(request,'error.html')
         else:
-            return render(request,"appointment.html")
+            # Retrieve the group object with the name "Doctor"
+            doctor_group = Group.objects.get(name='Doctors')
+            # Filter users based on the retrieved group
+            doctor_users = User.objects.filter(groups=doctor_group)
+            print(doctor_users)
+            
+            return render(request,"appointment.html",{'doctor_users': doctor_users})
 
     return render(request,'/templates/Login.html')
 
