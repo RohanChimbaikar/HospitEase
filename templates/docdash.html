@@ -12,6 +12,59 @@
 
 	<title>Doctor Dashboard</title>
 	<style>
+		#inventory-table {
+    display: none;
+}
+#inventory-table .use-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+#inventory-table .use-button:hover {
+    background-color: #45a049;
+}
+#inventory-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#inventory-table th,
+#inventory-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+#inventory-table th {
+    background-color: #f2f2f2;
+}
+
+#inventory-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#inventory-table tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+#inventory-table form {
+    display: inline-block;
+}
+
+#inventory-table .delete-button {
+    background-color: #ff5252;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+#inventory-table .delete-button:hover {
+    background-color: #e04848;
+}
         table {
             width: 100%;
             border-collapse: collapse;
@@ -117,12 +170,12 @@
 				</a>
 			</li>
 		
-			<li>
+			<!-- <li>
 				<a href="#">
 					<i class='bx bxs-group' ></i>
-					<span class="text">Current Patients</span>
+					<span class="text">Profile</span>
 				</a>
-			</li>
+			</li> -->
             <!-- <li>
 				<a href="#">
 					<i class='bx bx-plus' ></i>
@@ -191,7 +244,7 @@
 			<div class="head-title">
 				<div class="left">
 					<h1>Dashboard</h1>
-					<ul class="breadcrumb">
+					<!-- <ul class="breadcrumb">
 						<li>
 							<a href="#">Dashboard</a>
 						</li>
@@ -199,7 +252,7 @@
 						<li>
 							<a class="active" href="#">Home</a>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 				<!-- <a href="#" class="btn-download">
 					<i class='bx bxs-cloud-download' ></i>
@@ -207,7 +260,7 @@
 				</a> -->
 			</div>
 
-			<ul class="box-info">
+			<!-- <ul class="box-info">
 				<li>
 					<i class='bx bxs-bell' ></i>
 					<span class="text">
@@ -226,7 +279,7 @@
 						<h3>Meetings </h3>
 					</span>
 				</li>
-			</ul>
+			</ul> -->
 
 
 			<!-- <div class="table-data">
@@ -400,7 +453,7 @@
 										{% csrf_token %}
 										<label for="useQuantity">Use Quantity:</label>
 										<input type="number" id="useQuantity" name="useQuantity" min="1" required>
-										<button type="submit">Use</button>
+										<button type="submit" class="use-button">Use</button>
 									</form>
 									
 									<!-- Edit button -->
