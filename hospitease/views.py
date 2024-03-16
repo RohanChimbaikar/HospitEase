@@ -56,8 +56,11 @@ def logg(request):
 
 def appoint(request):
     staff_users = User.objects.filter(is_staff=True)
-    print(staff_users)
-    return render(request,"appointment.html",{'staff_users': staff_users})
+    accepted_appointments = Appointment.objects.filter(accepted=True).values('time')
+    accepted_time_slots = [appointment['time'].strftime('%I:%M %p') for appointment in accepted_appointments]
+    available_time_slots = ["09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM"]
+    print(available_time_slots)
+    return render(request,"appointment.html",{'staff_users': staff_users,'accepted_time_slots': accepted_time_slots,'available_time_slots':available_time_slots})
 
 def dash(request):
     return render(request,"templates/admindash.html")
@@ -77,12 +80,17 @@ def doc(request):
         products = Product.objects.all()
         available_rooms = Room.objects.filter(available=True)
         unavailable_rooms = Room.objects.filter(available=False)
+        # email_sent = request.session.get('email_sent', False)
+        email_sent = request.session.pop('email_sent', False)
+        reject_sent = request.session.pop('reject_sent', False)
         return render(request, 'docdash.html', {
             "data": appointments,
             'products': products,
             'available_rooms': available_rooms,
             'unavailable_rooms': unavailable_rooms,
             'user_full_name': user_full_name,
+            'email_sent':email_sent,
+            'reject_sent':reject_sent,
         })
     else:
         return redirect("login")  # Redirect to the login page if the user is not authenticated

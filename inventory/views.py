@@ -43,7 +43,7 @@ def delete_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
         product.delete()
-        return redirect('/templates/inventory.html')
+        return redirect('doc')
     return render(request, 'delete_product.html', {'product': product})
 
 
@@ -62,7 +62,7 @@ def use_product(request, product_id):
         messages.success(request, 'Product quantity updated successfully.')
         
         # Redirect back to the page or wherever appropriate
-        return redirect('/templates/inventory.html')
+        return redirect('doc')
     else:
         # If it's not a POST request, redirect or handle appropriately
-        return redirect('/templates/inventory.html')
+        return redirect('doc')

@@ -69,8 +69,7 @@ urlpatterns = [
     path('templates/admindash.html',views.dash),
     path('templates/docdash.html',views.doc,name='doc'),
     path('send-acceptance-email/', send_acceptance_email, name='send_acceptance_email'),
-    path('reject-appointment/', reject_email, name='reject-appointment/'),
-
+    path('reject-appointment/', reject_email, name='reject_appointment'),
 
     
     path('book/<int:room_id>/', views.book_room, name='book_room'),

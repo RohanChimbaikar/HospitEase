@@ -7,142 +7,295 @@
 	<!-- Boxicons -->
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<!-- My CSS -->
-	<link rel="stylesheet" href="../static/dash.css">
+	<link rel="stylesheet" href="/static/dash.css">
 	<link rel="icon" href="/static/icon4.png" type="image/png">
 
 	<title>Doctor Dashboard</title>
 	<style>
-		#inventory-table {
-    display: none;
-}
-#inventory-table .use-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-}
-
-#inventory-table .use-button:hover {
-    background-color: #45a049;
-}
-#inventory-table table {
+#appointments-table table {
     width: 100%;
     border-collapse: collapse;
 }
 
-#inventory-table th,
-#inventory-table td {
+#appointments-table th,
+#appointments-table td {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: left;
 }
 
-#inventory-table th {
+#appointments-table th {
     background-color: #f2f2f2;
 }
 
-#inventory-table tbody tr:nth-child(even) {
+#appointments-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-#inventory-table tbody tr:hover {
+#appointments-table tbody tr:hover {
     background-color: #e0e0e0;
 }
 
-#inventory-table form {
+#appointments-table .optionss form {
     display: inline-block;
+    margin-right: 5px;
 }
 
-#inventory-table .delete-button {
-    background-color: #ff5252;
+#appointments-table .accept {
+    padding: 6px 12px;
+    background-color: #4caf50; /* Green color */
     color: white;
     border: none;
-    padding: 6px 12px;
     cursor: pointer;
 }
 
-#inventory-table .delete-button:hover {
-    background-color: #e04848;
+#appointments-table .accept:hover {
+    background-color: #45a049; /* Darker green color */
 }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .accept, .reject {
-            padding: 6px 12px;
-            cursor: pointer;
-            border: none;
-            border-radius: 4px;
-            color: white;
-        }
-        .accept {
-            background-color: #4CAF50; /* Green */
-			
-        }
-        .reject {
-            background-color: #f44336; /* Red */
-        }
-		.alert {
-			padding: 15px;
-			margin-bottom: 20px;
-			border: 1px solid transparent;
-			border-radius: 4px;
-		}
 
-		.alert-success {
-		color: #155724;
-		background-color: #d4edda;
-		border-color: #c3e6cb;
-		font-family: var(--lato);
+#appointments-table .reject {
+    padding: 6px 12px;
+    background-color: #ff5252; /* Red color */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#appointments-table .reject:hover {
+    background-color: #e04848; /* Darker red color */
+}
+#appointments-table th:nth-child(1),
+#appointments-table td:nth-child(1) {
+    width: 12%; /* Adjust the width as needed */
+}
+#appointments-table th:nth-child(4),
+#appointments-table td:nth-child(4) {
+    width: 15%; /* Adjust the width as needed */
+}
+#appointments-table th:nth-child(2),
+#appointments-table td:nth-child(2) {
+    width: 8.9%; /* Adjust the width as needed */
+}
+#appointments-table th:nth-child(3),
+#appointments-table td:nth-child(3) {
+    width: 7.3%; /* Adjust the width as needed */
+}
+#appointments-table th:nth-child(7),
+#appointments-table td:nth-child(7) {
+    width: 15%; /* Adjust the width as needed */
+}
+
+	#inventory-table .use-button {
+		background-color: #4caf50;
+		color: white;
+		border: none;
+		padding: 6px 12px;
+		cursor: pointer;
+	}
+
+	#inventory-table .use-button:hover {
+		background-color: #45a049;
+	}
+	#inventory-table table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	#inventory-table th,
+	#inventory-table td {
+		border: 1px solid #ccc;
+		padding: 8px;
+		text-align: left;
+	}
+
+	#inventory-table th {
+		background-color: #f2f2f2;
+	}
+
+	#inventory-table tbody tr:nth-child(even) {
+		background-color: #f9f9f9;
+	}
+
+	#inventory-table tbody tr:hover {
+		background-color: #e0e0e0;
+	}
+
+	#inventory-table form{
+		display: inline-block;
+	}
+
+
+	#inventory-table .delete-button {
+		background-color: #ff5252;
+		color: white;
+		border: none;
+		padding: 6px 12px;
+		cursor: pointer;
+	}
+
+	#inventory-table .delete-button:hover {
+		background-color: #e04848;
+	}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+			th, td {
+				padding: 8px;
+				text-align: left;
+				border-bottom: 1px solid #ddd;
+			}
+			th {
+				background-color: #f2f2f2;
+			}
+			.accept, .reject {
+				padding: 6px 12px;
+				cursor: pointer;
+				border: none;
+				border-radius: 4px;
+				color: white;
+			}
+			.accept {
+				background-color: #4CAF50; /* Green */
+				
+			}
+			.reject {
+				background-color: #f44336; /* Red */
+			}
+			.alert {
+				padding: 15px;
+				margin-bottom: 20px;
+				border: 1px solid transparent;
+				border-radius: 4px;
+			}
+
+			.alert-success {
+			color: #155724;
+			background-color: #d4edda;
+			border-color: #c3e6cb;
+			font-family: var(--lato);
+			animation: slideDown 0.5s ease forwards;
+			}
+			@keyframes slideDown {
+		from {
+			transform: translateY(-100%);
+		}
+		to {
+			transform: translateY(0);
+		}
+	}
+			.alert-reject {
+		color: #dc3545; /* Text color */
+		background-color: #f8d7da; /* Background color (light red) */
+		border-color: #f5c6cb; /* Border color */
+		font-family: var(--lato); /* Font family */
+		padding: 1rem; /* Padding */
+		border-radius: 0.25rem; /* Border radius */
+		margin-bottom: 1rem; /* Margin bottom */
+		transition: 3s ease-in;
 		animation: slideDown 0.5s ease forwards;
+		
+	}
+
+	@keyframes slideUp {
+		from {
+			transform: translateY(0);
 		}
-		@keyframes slideDown {
-    from {
-        transform: translateY(-100%);
-    }
-    to {
-        transform: translateY(0);
-    }
-}
-		.alert-reject {
-    color: #dc3545; /* Text color */
-    background-color: #f8d7da; /* Background color (light red) */
-    border-color: #f5c6cb; /* Border color */
-    font-family: var(--lato); /* Font family */
-    padding: 1rem; /* Padding */
-    border-radius: 0.25rem; /* Border radius */
-    margin-bottom: 1rem; /* Margin bottom */
-	transition: 3s ease-in;
-	animation: slideDown 0.5s ease forwards;
+		to {
+			transform: translateY(-100%);
+		}
+	}
+
+
+
+	.quantity-input {
+		width: 60px; /* Adjust width as needed */
+		padding: 8px;
+		border: 1px solid #ccc;
+		border-radius: 8px;
+		font-size: 16px;
+		box-sizing: border-box;
+	}
+
+	.quantity-input:focus {
+		outline: none;
+		border-color: #007bff; /* Change color on focus */
+	}
+
+	/* Adjust styling for different states as needed */
+	.quantity-input:disabled {
+		background-color: #f0f0f0;
+		color: #999;
+	}
 	
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(0);
+#rooms-table {
+        display: none;
     }
-    to {
-        transform: translateY(-100%);
+
+    #rooms-table .occupy-button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        cursor: pointer;
     }
-}
+
+    #rooms-table .occupy-button:hover {
+        background-color: #45a049;
+    }
+
+    #rooms-table .unoccupy-button {
+        background-color: #ff5252;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        cursor: pointer;
+    }
+
+    #rooms-table .unoccupy-button:hover {
+        background-color: #e04848;
+    }
+
+    #rooms-table table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    #rooms-table th,
+    #rooms-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    #rooms-table th {
+        background-color: #f2f2f2;
+    }
+
+    #rooms-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    #rooms-table tbody tr:hover {
+        background-color: #e0e0e0;
+    }
+
+    #rooms-table form {
+        display: inline-block;
+    }
 
 
+	table,td,th, tr{
+		text-align: center;
+	}
 
-
-
+		
     </style>
 
 </head>
 <body>
+
+	
 	
 	<!-- SIDEBAR -->
 	<section id="sidebar">
@@ -158,18 +311,23 @@
 				</a>
 			</li>
 			<li>
-				<a href="/invent/">
+				<a href="/templates/docdash.html">
 					<i class='bx bxs-bell' ></i>
 					<span class="text">Inventory</span>
 				</a>
 			</li>
 			<li>
-				<a href="/rooms/">
+				<a href="/templates/docdash.html">
 					<i class='bx bxs-smile' ></i>
 					<span class="text">Room</span>
 				</a>
 			</li>
-		
+			<li>
+				<a href="/templates/docdash.html">
+					<i class='bx bxs-smile' ></i>
+					<span class="text">Profile</span>
+				</a>
+			</li>
 			<!-- <li>
 				<a href="#">
 					<i class='bx bxs-group' ></i>
@@ -244,6 +402,7 @@
 			<div class="head-title">
 				<div class="left">
 					<h1>Dashboard</h1>
+					
 					<!-- <ul class="breadcrumb">
 						<li>
 							<a href="#">Dashboard</a>
@@ -377,6 +536,7 @@
 					<!-- </ul>
 				</div> -->
 			<!-- </div> -->
+			<!-- <iframe id="hidden-iframe" name="hidden-iframe" style="display: none;"></iframe> -->
 			<div id="appointments-table" style="display: none;">
                 <!-- Your appointments table content -->
 				<div class="todo">
@@ -409,12 +569,14 @@
 								<td>{{ appointment.phone }}</td>	
 								<td>{{ appointment.message }}</td>	
 								<td class="optionss">
-									<form method="post" action="/send-acceptance-email/">
+									<form method="POST" action="/send-acceptance-email/#appointments-table">
 										{% csrf_token %}
+									
 										<input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+										<input type="hidden" name="appointments-table" ]>
 										<button type="submit" class="accept">Accept</button>
 									</form>
-									<form method="post" action="/reject-appointment/">
+									<form method="POST" action="/reject-appointment/#appointments-table">
 										{% csrf_token %}
 										<input type="hidden" name="appointment_id" value="{{ appointment.id }}">
 										<button type="submit" class="reject">Reject</button>
@@ -449,17 +611,17 @@
 							<td>{{ product.quantity }}</td>
 							<td>{{ product.date_added }}</td>
 								<td>
-									<form id="useProductForm" method="post" action="{% url 'use_product' product.id %}">
+									<form id="useProductForm" method="post" action="{% url 'use_product' product.id %}#inventory-table">
 										{% csrf_token %}
 										<label for="useQuantity">Use Quantity:</label>
-										<input type="number" id="useQuantity" name="useQuantity" min="1" required>
+										<input type="number" id="useQuantity" name="useQuantity" min="1" required class="quantity-input">
 										<button type="submit" class="use-button">Use</button>
 									</form>
 									
 									<!-- Edit button -->
 									
 									<!-- Delete button -->
-									<form action="{% url 'delete_product' product.id %}" method="post" class="delete-form">
+									<form action="{% url 'delete_product' product.id %}#inventory-table" method="post" class="delete-form">
 										{% csrf_token %}
 										<input type="submit" value="Delete" class="delete-button" onclick="return confirm('Are you sure you want to delete this product?')">
 									</form>
@@ -471,6 +633,7 @@
             </div>
 
 			<div id="rooms-table" style="display: none;">
+				<h2>Vacant Rooms</h2>
                 <table>
 					<thead>
 						<tr>
@@ -489,7 +652,7 @@
 								
 								<td>{{ room.floor }}</td>
 								<td>
-									<form method="post" action="{% url 'occupy_room' room.id %}">
+									<form method="post" action="{% url 'occupy_room' room.id %}#rooms-table">
 										{% csrf_token %}
 										<input type="hidden" name="action" value="occupy">
 										<button type="submit" class="occupy-button">Occupy</button>
@@ -499,7 +662,9 @@
 						{% endfor %}
 					</tbody>
 				</table>
-				 <table>
+
+				 <table style="text-align: center;">
+					<h2 style="margin-top: 30px;">Occupied Rooms</h2>
                 <thead>
                     <tr>
                         <th>Room Number</th>
@@ -516,10 +681,10 @@
                             <td>{{ room.room_type }}</td>
                             <td>{{ room.floor }}</td>
                             <td>
-                                <form method="post" action="{% url 'unoccupy_room' room.id %}">
+                                <form method="post" action="{% url 'unoccupy_room' room.id %}#rooms-table">
                                     {% csrf_token %}
                                     <input type="hidden" name="action" value="unoccupy">
-                                    <button type="submit" class="unoccupy-button">Unoccupy</button>
+                                    <button type="submit" class="unoccupy-button">Vacate</button>
                                 </form>
                             </td>
                         </tr>
@@ -527,12 +692,101 @@
                 </tbody>
             </table>
             </div>
-			
+			<div id="profile-table" style="display: none;">
+				<div class=e1_103><span  class="e1_104">Personal Information</span>
+					<div class=e1_481><span  class="e1_105">Employee ID</span><span  class="e1_106">AO001</span></div>
+					<div class=e1_482><span  class="e1_107">Phone</span><span  class="e1_108">(719) 860-5684</span></div>
+					<div class=e1_109><span  class="e1_112">Edit</span>
+					  <div class=e1_110>
+						<div class="e1_111"></div>
+					  </div>
+					</div>
+					<div class=e1_483><span  class="e1_113">Marital Status</span><span  class="e1_114">Single</span></div>
+					<div class=e1_484><span  class="e1_115">Birthday</span><span  class="e1_116">May 15, 1995</span></div>
+					<div class=e1_485><span  class="e1_117">Gender</span><span  class="e1_118">Female</span></div>
+					<div class=e1_486><span  class="e1_119">ID Number</span><span  class="e1_120">0001234567</span></div>
+					<div class=e1_487><span  class="e1_121">Nationality</span><span  class="e1_122">USA</span></div>
+					<div class="e1_123"></div><span  class="e1_124">Address Information</span>
+					<div class=e1_488><span  class="e1_125">Addresss</span><span  class="e1_126">925 Wall Street</span></div>
+					<div class=e1_489><span  class="e1_127">Country</span><span  class="e1_128">USA</span></div>
+					<div class=e1_490><span  class="e1_129">City</span><span  class="e1_130">Houston</span></div>
+					<div class=e1_511>
+					  <div class=e1_491><span  class="e1_131">Hometown</span><span  class="e1_132">-</span></div>
+					  <div class=e1_492><span  class="e1_133">Postal Code</span><span  class="e1_134">75204</span></div>
+					</div>
+					<div class=e1_135><span  class="e1_138">Edit</span>
+					  <div class=e1_136>
+						<div class="e1_137"></div>
+					  </div>
+					</div><span  class="e1_139">Education</span><span  class="e1_140">2019</span><span  class="e1_141">Bachelor of Arts in Psychology</span><span  class="e1_142">University of California, Berkeley</span>
+					<div class=e1_493><span  class="e1_143">2021</span><span  class="e1_144">Master of Science in Computer Science</span><span  class="e1_145">Stanford University</span></div>
+					<div class=e1_146><span  class="e1_149">Edit</span>
+					  <div class=e1_147>
+						<div class="e1_148"></div>
+					  </div>
+					</div>
+					<div class="e1_150"></div><span  class="e1_151">Payment</span>
+					<div class=e1_494><span  class="e1_152">Bank Account</span><span  class="e1_153">0123456789</span></div>
+					<div class=e1_495><span  class="e1_154">Account Name</span><span  class="e1_155">Elizabeth Lopez</span></div>
+					<div class=e1_496><span  class="e1_156">Bank Name</span><span  class="e1_157">JPMorgan Chase Bank</span></div>
+					<div class=e1_497><span  class="e1_158">Tax Code</span><span  class="e1_159">7678790045</span></div>
+					<div class=e1_498><span  class="e1_160">Insurance Code</span><span  class="e1_161">AB75204</span></div>
+					<div class=e1_162><span  class="e1_165">Edit</span>
+					  <div class=e1_163>
+						<div class="e1_164"></div>
+					  </div>
+					</div><span  class="e1_166">General Information</span>
+					<div class=e1_167>
+					  <div class="e1_168"></div>
+					</div>
+					<div class="e1_169"></div>
+					<div class="e1_170"></div>
+					<div class=e1_499><span  class="e1_171">Email</span><span  class="e1_172">elizabethlopez95@hotmail.com</span></div>
+					<div class=e1_173>
+					  <div class=e1_174><span  class="e1_183">Certificate.pdf</span>
+						<div class=e1_175>
+						  <div class="e1_176"></div>
+						  <div class="e1_177"></div>
+						  <div class="e1_178"></div>
+						  <div class="e1_179"></div>
+						  <div class="e1_180"></div>
+						  <div class="e1_181"></div>
+						  <div class="e1_182"></div>
+						</div>
+					  </div>
+					</div>
+					<div class=e1_184>
+					  <div class=e1_185><span  class="e1_194">Certificate.pdf</span>
+						<div class=e1_186>
+						  <div class="e1_187"></div>
+						  <div class="e1_188"></div>
+						  <div class="e1_189"></div>
+						  <div class="e1_190"></div>
+						  <div class="e1_191"></div>
+						  <div class="e1_192"></div>
+						  <div class="e1_193"></div>
+						</div>
+					  </div>
+					</div>
+					<div class=e1_195>
+					  <div class=e1_196><span  class="e1_205">ID.png</span>
+						<div class=e1_197>
+						  <div class="e1_198"></div>
+						  <div class="e1_199"></div>
+						  <div class="e1_200"></div>
+						  <div class="e1_201"></div>
+						  <div class="e1_202"></div>
+						  <div class="e1_203"></div>
+						  <div class="e1_204"></div>
+						</div>
+					  </div>
+					</div>
+				  </div>
+			</div>
 		</div>
 	
 		</main>
-		
-
+	
 
 	<script src="../static/script.js"></script>
 	<script>
@@ -551,11 +805,12 @@
 		const appointmentsLink = document.querySelector('#sidebar ul.side-menu li:nth-child(1) a');
 		const inventoryLink = document.querySelector('#sidebar ul.side-menu li:nth-child(2) a');
 		const roomsLink = document.querySelector('#sidebar ul.side-menu li:nth-child(3) a'); 
-
+		const profile=document.querySelector('#sidebar ul.side-menu li:nth-child(4) a');
 		// Get references to the tables
 		const appointmentsTable = document.getElementById('appointments-table');
 		const inventoryTable = document.getElementById('inventory-table');
 		const roomsTable = document.getElementById('rooms-table'); 
+		const profiletable= document.getElementById('profile-table'); 
 
 		// Add event listeners to the sidebar links
 		appointmentsLink.addEventListener('click', (event) => {
@@ -577,6 +832,7 @@
 			inventoryTable.style.display = 'block';
 			roomsTable.style.display = 'none'; 
 		});
+
 		roomsLink.addEventListener('click', (event) => { // Add this block
     // Prevent the default action of the link
     event.preventDefault();
@@ -587,17 +843,47 @@
     roomsTable.style.display = 'block';
 });
 
+	profile.addEventListener('click', (event) => {
+			// Prevent the default action of the link
+			event.preventDefault();
+	
+			// Show appointments table and hide others
+			profiletable.style.display = 'block';
+			inventoryTable.style.display = 'none';
+			roomsTable.style.display = 'none';
+			appointmentsTable.style.display = 'none';
+		});
 
+var currentUrl = window.location.href;
 
-	var currentUrl = window.location.href;
-
-	// Check if the URL contains #rooms-section
-	if (currentUrl.includes('#rooms-table')) {
-		// Show the rooms section
-		var roomsSection = document.getElementById('rooms-table');
-		roomsSection.style.display = 'block';
-	}
+// Check if the URL contains a fragment
+if (currentUrl.includes('#appointments-table')) {
+	// Show the appointments table section
+	var appointmentstable = document.getElementById('appointments-table');
+	appointmentstable.style.display = 'block';
+} else if (currentUrl.includes('#inventory-table')) {
+	// Show the inventory table section
+	var inventorytable = document.getElementById('inventory-table');
+	inventorytable.style.display = 'block';
+} else if (currentUrl.includes('#rooms-table')) {
+	// Show the rooms table section
+	var roomstable = document.getElementById('rooms-table');
+	roomstable.style.display = 'block';
+}
 	</script>
+	<script>
+        // Function to handle form submission
+        function submitForm(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+            
+            // Get the form element
+            var form = document.getElementById('acceptance-form');
+
+            // Submit the form using JavaScript
+            form.submit();
+        }
+    </script>
 	
 </body>
 </html>

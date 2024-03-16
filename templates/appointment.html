@@ -92,21 +92,14 @@
             </div>
             <div class="form-group">
                 <label for="time">Available Time Slots:</label>
-              <div class="time-slots">
-                <button type="button"  data-time="09:00">9:00 AM</button>
-                <button type="button"  data-time="09:30">9:30 AM</button>
-                <button type="button"  data-time="10:00">10:00 AM</button>
-                <button type="button"  data-time="10:30">10:30 AM</button>
-                <button type="button"  data-time="11:00">11:00 AM</button>
-                <button type="button"  data-time="11:30">11:30 AM</button>
-                <button type="button"  data-time="12:00">12:00 PM</button>
-                <button type="button"  data-time="12:30">12:30 PM</button>
-                <button type="button"  data-time="01:00">01:00 PM</button>
-                <button type="button"  data-time="01:30">01:30 PM</button>
-                <button type="button"  data-time="02:00">02:00 PM</button>
-                <button type="button"  data-time="02:30">02:30 PM</button>
-                <button type="button"  data-time="03:00">03:00 PM</button>
-                </div>
+                {% for time_slot in available_time_slots %}
+                {% if time_slot in accepted_time_slots %}
+                    <button type="button" data-time="{{ time_slot }}" disabled>{{ time_slot }}</button>
+                {% else %}
+                    <button type="button" data-time="{{ time_slot }}">{{ time_slot }}</button>
+                {% endif %}
+            {% endfor %}
+        
                 <label for="selectedTime">Selected Time:</label>
                 <input type="text" id="selectedTime" name="selectedTime" readonly>
             </div>
@@ -141,7 +134,17 @@
                 selectedTimeInput.value = selectedTime;
             });
         });
+        document.getElementById("button").addEventListener("click", function(event) {
+    // Get the selected time
+    const selectedTimeInput = document.getElementById('selectedTime');
+    const selectedTime = selectedTimeInput.value;
 
+    // Convert the selected time to a valid format (HH:MM)
+    const formattedTime = moment(selectedTime, ['h:mm A']).format('HH:mm');
+
+    // Update the hidden input field with the formatted time
+    selectedTimeInput.value = formattedTime;
+});
     </script>
     
 </body>

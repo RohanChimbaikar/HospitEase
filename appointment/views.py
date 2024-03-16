@@ -20,13 +20,20 @@ def book_appointment(request):
         message = request.POST.get('message')
         data = Appointment.objects.create(doctor=doctor_user, date=date, time=time, name=name, email=email, phone=phone, message=message)
         appointments = Appointment.objects.all()  # Query all appointments again after creating the new one
+        time_slots = {
+        '09:00 AM': True,
+        '09:30 AM': False,
+        # Add more time slots as needed, with their disabled status
+    }
 
-        return render(request, 'appointment.html', {'appointment_details':True })
+        return render(request, 'appointment.html', {'appointment_details':True ,'time_slots':time_slots})
     
     else:
         return render(request, 'appointment.html')
     
     return render(request, 'appointment.html')
+
+
 
 
 def send_acceptance_email(request):
@@ -52,11 +59,17 @@ def send_acceptance_email(request):
             [appointment.email],
             fail_silently=False,
         )
-        email_sent=True
-        return render(request, 'docdash.html', {'data': Appointment.objects.all(), 'email_sent': email_sent})
+        request.session['email_sent'] = True
+        appointment.accepted = True
+        appointment.save()
         
-        # Redirect to a success page
-        return HttpResponseRedirect('/success/')
+        # Redirect to the URL of the other view
+        return redirect('doc')
+    else:
+        request.session['email_sent'] = False
+        return redirect('doc')
+    
+
     
 
 
@@ -67,9 +80,9 @@ def reject_email(request):
         appointment_id = request.POST.get('appointment_id')
         
         # Get the appointment object
-        appointment = Appointment.objects.get(id=appointment_id)        
+        appointment = Appointment.objects.get(id=appointment_id)
         
-        # Send rejection email
+        # Send acceptance email
         send_mail(
             'Appointment Rejection Notification',
             'Dear {},\n\n' \
@@ -86,11 +99,13 @@ def reject_email(request):
             [appointment.email],
             fail_silently=False,
         )
-
-    # Fetch all appointments
-    appointments = Appointment.objects.all()
+        request.session['reject_sent'] = True
+        
+        # Redirect to the URL of the other view
+        return redirect('doc')
+    else:
+        request.session['reject_sent'] = False
+        return redirect('doc')
     
-    # Render the same page with updated appointment data and rejection flag
-    return render(request, 'docdash.html', {'data': appointments, 'reject_sent': True})
 
     
